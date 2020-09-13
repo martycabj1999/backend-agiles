@@ -126,13 +126,15 @@ export async function updatePasswordAdmin(id, password) {
  *
  * @export
  * @param {string} name
+ * @param {string} lastname
+ * @param {string} username
+ * @param {integer} phone
  * @param {string} email
  * @param {string} password
  * @param {string} role
- * @param {number} active
  * @returns {Object}
  */
-export async function addUser(name, email, password, role, active) {
+export async function addUser(name, lastname, username, phone, email, password, role) {
     let salt = bcryptjs.genSaltSync(10);
     let hashPassword = bcryptjs.hashSync(password, salt);
     let newRole = await Role.findOne({
@@ -141,15 +143,16 @@ export async function addUser(name, email, password, role, active) {
         .then(({
             dataValues
         }) => dataValues.id);
-   
+
     let username = email.split('@')[0]
     const user = await User.create({
         name,
+        lastname,
         username,
+        phone,
         email,
         password: hashPassword,
         role_id: newRole,
-        active,
     });
 
     return user;
@@ -184,11 +187,16 @@ export async function getUser(id) {
  * @export
  * @param {number} id
  * @param {string} name
+ * @param {string} lastname
  * @param {string} username
- * @param {string} biography
+ * @param {integer} phone
+ * @param {string} email
+ * @param {string} address
+ * @param {string} facebook
+ * @param {string} instagram
  * @returns {Object}
  */
-export async function updateUser(id, name, username, biography) {
+export async function updateUser(id, name, lastname, username, phone, email, address, facebook, instagram) {
 
     let user = await User.findOne({
         where: {
@@ -202,8 +210,13 @@ export async function updateUser(id, name, username, biography) {
 
     await User.update({
         name: name ? name : user.name,
+        lastname: lastname ? lastname : user.lastname,
         username: username ? username : user.username,
-        biography: biography ? biography : user.biography,
+        phone: phone ? phone : user.phone,
+        email: email ? email : user.email,
+        address: address ? address : user.address,
+        facebook: facebook ? facebook : user.facebook,
+        instagram: instagram ? instagram : user.instagram,
     }, {
         where: {
             id: id,

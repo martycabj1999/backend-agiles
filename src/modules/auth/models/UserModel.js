@@ -7,13 +7,15 @@ import {
 
 const sequelize = new Sequelize(DBURL);
 
-//const Career = CareerModel(sequelize, Sequelize);
 const Role = RoleModel(sequelize, Sequelize);
 
 module.exports = (sequelize, type) => {
 
     const User = sequelize.define('user', {
         name: {
+            type: type.STRING
+        },
+        lastname: {
             type: type.STRING
         },
         username: {
@@ -25,6 +27,18 @@ module.exports = (sequelize, type) => {
                     msg: "username es requerido"
                 },
             },
+        },
+        phone: {
+            type: type.INTEGER
+        },
+        address: {
+            type: type.STRING
+        },
+        facebook: {
+            type: type.STRING
+        },
+        instagram: {
+            type: type.STRING
         },
         points: {
             type: type.INTEGER,
@@ -51,19 +65,12 @@ module.exports = (sequelize, type) => {
         },
         active: {
             type: type.BOOLEAN,
-            allowNull: false,
-            validate: {
-                notNull: {
-                    msg: "Active es requerido"
-                },
-            },
+            defaultValue: true
         },
     }, {
         paranoid: true,
         timestamps: true
     })
-
-
 
     User.belongsTo(Role, {
         foreignKey: {
@@ -75,16 +82,6 @@ module.exports = (sequelize, type) => {
         }
     });
 
-    /* User.belongsTo(Career, {
-        foreignKey: {
-            name: 'career_id'
-        },
-        references: {
-            model: Career,
-            key: 'id'
-        }
-    });
- */
     return User
 
 }

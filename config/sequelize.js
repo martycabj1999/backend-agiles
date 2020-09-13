@@ -4,10 +4,11 @@ import moment from 'moment';
 //SECURITY
 import UserModel from '../src/modules/auth/models/UserModel'
 import RoleModel from '../src/modules/auth/models/RoleModel'
-import ProfileModel from '../src/modules/auth/models/ProfileModel'
-import CountryModel from '../src/modules/auth/models/CountryModel'
-import LevelModel from '../src/modules/auth/models/LevelModel'
-import TrophyModel from '../src/modules/auth/models/TrophyModel'
+
+//PET
+import ImageModel from '../src/modules/pet/models/ImageModel'
+import TagModel from '../src/modules/pet/models/TagModel'
+import PostModel from '../src/modules/pet/models/PostModel'
 
 import {
     DBURL
@@ -20,6 +21,11 @@ const sequelize = new Sequelize(DBURL);
 //AUTH
 const User = UserModel(sequelize, Sequelize);
 const Role = RoleModel(sequelize, Sequelize);
+
+//PET
+const Image = ImageModel(sequelize, Sequelize);
+const Tag = TagModel(sequelize, Sequelize);
+const Post = PostModel(sequelize, Sequelize);
 
 
 sequelize.sync()

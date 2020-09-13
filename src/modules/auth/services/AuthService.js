@@ -20,6 +20,7 @@ function generateToken(user, roleName) {
         id: user.id,
         username: user.username,
         name: user.name,
+        lastname: user.lastname,
         points: user.points,
         email: user.email,
         role: {
@@ -117,7 +118,6 @@ export const authMethodService = async function (auth, user_id, method) {
                     username: username,
                     google_id: user_id,
                     role_id: role.id,
-                    active: 1,
                 });
 
                 let token = generateToken(newUser, role.name)
@@ -160,7 +160,6 @@ export const authMethodService = async function (auth, user_id, method) {
                     username: username,
                     facebook_id: auth,
                     role_id: role.id,
-                    active: 1,
                 });
 
                 let token = generateToken(newUser, role.name)

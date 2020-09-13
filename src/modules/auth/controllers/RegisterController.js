@@ -26,16 +26,18 @@ let response = createResponseFormat()
  */
 export const registerAction = async function (req, res) {
 
-    logRequest(req)
+    let response = logRequest(req)
 
     let {
-        nickname,
+        name,
+        lastname,
+        username,
+        phone,
         email,
         password,
-        profile_id
     } = req.body;
-    console.log(nickname, email, password, profile_id);
-    const result = await registerUserService(nickname, email, password, profile_id)
+
+    const result = await registerUserService(name, lastname, username, phone, email, password)
 
     /* const sendEmail = await emailService(req.body.name,
         req.body.email) */

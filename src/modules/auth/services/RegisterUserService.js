@@ -13,23 +13,27 @@ const User = UserModel(sequelize, Sequelize);
  * register user
  *
  * @export
+ * @param {string} name
+ * @param {string} lastname
  * @param {string} username
+ * @param {integer} phone
  * @param {string} email
  * @param {string} password
- * @param {number} profile_id
  * @returns {Object}
  */
-const registerUserService = async function (username, email, password) {
+const registerUserService = async function (name, lastname, username, phone, email, password) {
 
     let salt = bcryptjs.genSaltSync(10);
     let hashPassword = bcryptjs.hashSync(password, salt);
 
     const user = await User.create({
+        name,
+        lastname,
         username,
+        phone,
         email,
         password: hashPassword,
-        role_id: 2,
-        active: 1
+        role_id: 2
     })
         .catch(error => {
             return error
