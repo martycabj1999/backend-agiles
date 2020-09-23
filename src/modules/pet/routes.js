@@ -8,8 +8,6 @@ import {
 import {
     getTagsAction,
     addTagAction,
-    getTagAction,
-    updateTagAction,
 } from './controllers/TagController'
 import {
     multerI
@@ -38,9 +36,7 @@ router.put('/api/post/:id', [authToken, updatePostActionMiddleware], updatePostA
 
 //TAG
 router.get('/api/tags', getTagsAction)
-router.post('/api/tag', [authToken, addTagActionMiddleware], addTagAction)
-router.get('/api/tag/:id', [getTagActionMiddleware], getTagAction)
-router.put('/api/tag/:id', [authToken, updateTagActionMiddleware], updateTagAction)
+router.post('/api/tags/tag', addTagAction)
 
 
 export default router;

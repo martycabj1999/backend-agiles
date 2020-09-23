@@ -17,6 +17,7 @@ dotenv.config();
 
 //Routes
 import authRoutes from './src/modules/auth/routes';
+import petRoutes from './src/modules/pet/routes';
 
 //Middlewares
 import {
@@ -57,6 +58,7 @@ app.use(rbacMiddleware);
 
 //Routes
 app.use('/', authRoutes);
+app.use('/', petRoutes);
 
 //It allows consuming the images saved in the Backend
 app.use('/assets', express.static('assets'));

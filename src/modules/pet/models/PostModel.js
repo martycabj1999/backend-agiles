@@ -77,7 +77,7 @@ module.exports = (sequelize, type) => {
         }
     });
 
-    const PostsUser = sequelize.define('commentaries', {
+    const Comment = sequelize.define('comments', {
         content: {
             type: type.TEXT
         }
@@ -86,7 +86,7 @@ module.exports = (sequelize, type) => {
         timestamps: true
     })
 
-    PostsUser.belongsTo(Image, {
+    Comment.belongsTo(Image, {
         foreignKey: {
             name: 'image_id'
         },
@@ -97,11 +97,11 @@ module.exports = (sequelize, type) => {
     });
 
     Post.belongsToMany(User, {
-        through: PostsUser,
+        through: Comment,
         foreignKey: 'post_id'
     });
     User.belongsToMany(Post, {
-        through: PostsUser,
+        through: Comment,
         foreignKey: 'user_id'
     });
 
