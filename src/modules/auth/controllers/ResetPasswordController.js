@@ -18,12 +18,6 @@ module.exports.forgibbenPasswordAction = async function (req, res) {
 
     let response = logRequest(req)
 
-    let response = {
-        errors: [],
-        message: '',
-        data: {}
-    }
-
     const userMail = await verifyEmail(req.body.email)
 
     if (userMail.state) {
@@ -50,12 +44,6 @@ module.exports.forgibbenPasswordAction = async function (req, res) {
 module.exports.changeForgibbenPasswordAction = async function (req, res) {
 
     let response = logRequest(req)
-
-    let response = {
-        errors: [],
-        message: '',
-        data: {}
-    }
 
     const {
         token
@@ -86,12 +74,6 @@ module.exports.changeForgibbenPasswordAction = async function (req, res) {
 module.exports.getRestorePasswordAction = async function (req, res) {
 
     let response = logRequest(req)
-
-    let response = {
-        errors: [],
-        message: '',
-        data: {}
-    }
 
     const {
         token

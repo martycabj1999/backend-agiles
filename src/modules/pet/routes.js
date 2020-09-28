@@ -15,7 +15,7 @@ import {
 import {
     authToken
 } from '../middleware/auth'
-import {
+/* import {
     addPostActionMiddleware,
     getPostActionMiddleware,
     updatePostActionMiddleware,
@@ -24,15 +24,15 @@ import {
     addTagActionMiddleware,
     getTagActionMiddleware,
     updateTagActionMiddleware,
-} from './middleware/requests/tagMiddleware'
+} from './middleware/requests/tagMiddleware' */
 
 const router = express.Router()
 
 //POST
 router.get('/api/posts', getPostsAction)
-router.post('/api/post', [authToken, addPostActionMiddleware], addPostAction)
-router.get('/api/post/:id', [getPostActionMiddleware], getPostAction)
-router.put('/api/post/:id', [authToken, updatePostActionMiddleware], updatePostAction)
+router.post('/api/post', [authToken, /* addPostActionMiddleware */], addPostAction)
+router.get('/api/post/:id', [/* getPostActionMiddleware */], getPostAction)
+router.put('/api/post/:id', [authToken, /* updatePostActionMiddleware */], updatePostAction)
 
 //TAG
 router.get('/api/tags', getTagsAction)

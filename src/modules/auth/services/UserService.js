@@ -144,7 +144,7 @@ export async function addUser(name, lastname, username, phone, email, password, 
             dataValues
         }) => dataValues.id);
 
-    let username = email.split('@')[0]
+    username = email.split('@')[0]
     const user = await User.create({
         name,
         lastname,
