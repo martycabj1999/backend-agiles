@@ -10,6 +10,7 @@ import {
     Op
 } from 'sequelize';
 import UserModel from '../../models/UserModel';
+import bcryptjs from 'bcryptjs';
 import {
     DBURL
 } from '../../../../../config';
