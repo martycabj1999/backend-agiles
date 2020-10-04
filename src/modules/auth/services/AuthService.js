@@ -75,7 +75,7 @@ export const authService = async function (email, password) {
 
         const token = generateToken(dataValues, role.name)
 
-        return { token, user }
+        return { token, user: dataValues }
 
     })
 
