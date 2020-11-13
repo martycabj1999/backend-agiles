@@ -51,7 +51,4 @@ sequelize.sync()
         });
     })
 
-
-
-
 export default sequelize

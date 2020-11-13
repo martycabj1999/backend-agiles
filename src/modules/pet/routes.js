@@ -10,8 +10,8 @@ import {
     addTagAction,
 } from './controllers/TagController'
 import {
-    multerI
-} from '../middleware/multer'
+    multerFile
+} from './middleware/multer'
 import {
     authToken
 } from '../middleware/auth'
@@ -30,9 +30,9 @@ const router = express.Router()
 
 //POST
 router.get('/api/posts', getPostsAction)
-router.post('/api/post', [authToken, /* addPostActionMiddleware */], addPostAction)
-router.get('/api/post/:id', [/* getPostActionMiddleware */], getPostAction)
-router.put('/api/post/:id', [authToken, /* updatePostActionMiddleware */], updatePostAction)
+router.post('/api/post', [authToken, multerFile], addPostAction)
+router.get('/api/post/:id', getPostAction)
+router.put('/api/post/:id', [authToken], updatePostAction)
 
 //TAG
 router.get('/api/tags', getTagsAction)

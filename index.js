@@ -64,11 +64,6 @@ app.use('/', petRoutes);
 app.use('/assets', express.static('assets'));
 app.use('/upload', express.static('upload'));
 
-//Socket.io
-//IO = Is comunication for backend
-/* module.exports.io = socketIO(server);
-require('./sockets/socket'); */
-
 app.get('/hello', (req, res) => {
     res.send("Hello")
 });

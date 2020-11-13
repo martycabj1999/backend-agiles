@@ -25,6 +25,30 @@ module.exports = (sequelize, type) => {
                 },
             },
         },
+        name: {
+            type: type.STRING,
+        },
+        breed: {
+            type: type.STRING,
+        },
+        color: {
+            type: type.STRING,
+        },
+        type: {
+            type: type.STRING,
+        },
+        size: {
+            type: type.STRING,
+        },
+        age: {
+            type: type.STRING,
+        },
+        genre: {
+            type: type.STRING,
+        },
+        genre: {
+            type: type.STRING,
+        },
         description: {
             type: type.TEXT,
         },

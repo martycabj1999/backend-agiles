@@ -54,13 +54,23 @@ export async function getPostService(post_id) {
 }
 
 
-export async function addPostService(title, description, points, views, user_id) {
+export async function addPostService(title, name, breed, color, type, size, age, genre, description, date, phone, address, latitude, longitude, user_id) {
     try {
         const post = await Post.create({
             title,
+            name,
+            breed,
+            color,
+            type,
+            size,
+            age,
+            genre,
             description,
-            points,
-            views,
+            date,
+            phone,
+            address,
+            latitude,
+            longitude,
             user_id,
         });
 
@@ -71,7 +81,8 @@ export async function addPostService(title, description, points, views, user_id)
         throw (MessageResponse.serviceCatch(error))
     }
 }
-export async function updatePostService(id, title, description, points, views, user_id) {
+
+/*export async function updatePostService(id, title, description, points, views, user_id) {
     try {
         let post = await Post.findOne({
             where: {
@@ -114,4 +125,4 @@ export async function updatePostService(id, title, description, points, views, u
         logError('updatePostService', error)
         throw (MessageResponse.serviceCatch(error))
     }
-}
+}*/

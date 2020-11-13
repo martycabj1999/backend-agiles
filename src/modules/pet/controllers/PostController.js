@@ -45,15 +45,63 @@ export const addPostAction = async function (req, res) {
     let response = logRequest(req)
     let {
         title,
+        name,
+        breed,
+        color,
+        type,
+        size,
+        age,
+        genre,
         description,
-        points,
-        views,
-        user_id
-
+        date,
+        phone,
+        address,
+        latitude,
+        longitude,
     } = req.body
 
     try {
-        const post = await addPostService(title, description, points, views, user_id)
+        const post = await addPostService(title,
+            name,
+            breed,
+            color,
+            type,
+            size,
+            age,
+            genre,
+            description,
+            date,
+            phone,
+            address,
+            latitude,
+            longitude,
+            req.user.id
+        )
+
+        const file = req.file
+
+        await uploadS3(file, AWS_S3_BUCKET_REPORT_FOLDER, async (err, data) => {
+
+            //an error occurred while uploading the file
+            if (err) return response(res, 500)
+
+            //got on ok, charge the db
+            const score = await setScoreExamService(data.Location, exam_id, transcription, correct,
+                errors_count, words_count, wpm, wcpm, accuracy_rate)
+
+            if (!score) {
+                response.message = "Database error"
+                return res.status(400).send(response)
+            }
+
+            await setErrorsExamService(score._id, expected, text, visual_initial,
+                visual_end, ending, meaning, ommited, self_corrected, function_word, miscue_tag_code)
+
+            response.data = data.Location
+            return res.status(200).send(response)
+
+        })
+
         response.data = post
         res.status(201).send(response)
     } catch (error) {
@@ -63,7 +111,7 @@ export const addPostAction = async function (req, res) {
     }
 }
 
-export const updatePostAction = async function (req, res) {
+/*export const updatePostAction = async function (req, res) {
     let response = logRequest(req)
     try {
         let {
@@ -83,4 +131,4 @@ export const updatePostAction = async function (req, res) {
         response.errors.push(error)
         res.status(500).send(response)
     }
-}
+}*/
